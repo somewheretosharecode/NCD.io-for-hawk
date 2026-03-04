@@ -1,31 +1,32 @@
 [
     {
-        "id": "tab_regular_raw",
+        "id": "fb2d99fb28f6bd92",
         "type": "tab",
         "label": "Regular Raw Request + CSV",
         "disabled": false,
         "info": ""
     },
     {
-        "id": "junction_raw",
+        "id": "1e571cd7d03bf56d",
         "type": "junction",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "x": 1440,
         "y": 180,
         "wires": [
             [
-                "debug_time_domain",
-                "format_csv"
+                "e1b3681f77ffd761",
+                "d543d624a90b9781"
             ]
         ]
     },
     {
-        "id": "build_command",
+        "id": "f47d6c920243eb93",
         "type": "function",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "build-command",
         "func": "/*\n    Regular Raw Request command for type 110\n    [0xF4,0x4F,0x00,0x00,0x50,0x13,0x01] --> type 110, 112 or 114\n*/\nlet addr = msg.payload.addr;\nmsg.payload = {};\nmsg.payload.address = addr;\nmsg.payload.data = [0xF4, 0x4F, 0x00, 0x00, 0x50, 0x13, 0x01];\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -34,14 +35,14 @@
         "y": 80,
         "wires": [
             [
-                "delay_node"
+                "75dd254e7213776b"
             ]
         ]
     },
     {
-        "id": "switch_type",
+        "id": "970c71f401a6bd1b",
         "type": "switch",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "type 110",
         "property": "payload.sensor_type",
         "propertyType": "msg",
@@ -59,14 +60,14 @@
         "y": 220,
         "wires": [
             [
-                "switch_mac"
+                "6c28b4732172a3b3"
             ]
         ]
     },
     {
-        "id": "delay_node",
+        "id": "75dd254e7213776b",
         "type": "delay",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "",
         "pauseType": "delay",
         "timeout": "100",
@@ -84,15 +85,15 @@
         "y": 100,
         "wires": [
             [
-                "link_out"
+                "843ba970b1e41779"
             ]
         ],
         "l": false
     },
     {
-        "id": "debug_processed",
+        "id": "c216830331262e52",
         "type": "debug",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "Processed Data",
         "active": true,
         "tosidebar": true,
@@ -107,26 +108,9 @@
         "wires": []
     },
     {
-        "id": "gateway_node",
-        "type": "ncd-gateway-node",
-        "z": "tab_regular_raw",
-        "name": "Wireless Gateway (set COM port)",
-        "connection": "1183e84ed8807233",
-        "unknown_devices": 0,
-        "outputs": 1,
-        "x": 400,
-        "y": 200,
-        "wires": [
-            [
-                "switch_sensor_data",
-                "debug_all"
-            ]
-        ]
-    },
-    {
-        "id": "switch_sensor_data",
+        "id": "58bc4be060ac636f",
         "type": "switch",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "sensor-data",
         "property": "topic",
         "propertyType": "msg",
@@ -144,14 +128,14 @@
         "y": 220,
         "wires": [
             [
-                "switch_type"
+                "970c71f401a6bd1b"
             ]
         ]
     },
     {
-        "id": "switch_mac",
+        "id": "6c28b4732172a3b3",
         "type": "switch",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "mac",
         "property": "payload.addr",
         "propertyType": "msg",
@@ -169,14 +153,14 @@
         "y": 220,
         "wires": [
             [
-                "switch_mode"
+                "49bcb7ea82f1c9d7"
             ]
         ]
     },
     {
-        "id": "switch_condition",
+        "id": "755d3c9521429333",
         "type": "switch",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "condition",
         "property": "payload",
         "propertyType": "msg",
@@ -192,15 +176,15 @@
         "y": 140,
         "wires": [
             [
-                "build_command",
-                "debug_processed"
+                "f47d6c920243eb93",
+                "c216830331262e52"
             ]
         ]
     },
     {
-        "id": "switch_mode",
+        "id": "49bcb7ea82f1c9d7",
         "type": "switch",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "mode",
         "property": "payload.sensor_data.mode",
         "propertyType": "msg",
@@ -233,39 +217,39 @@
         "y": 180,
         "wires": [
             [
-                "switch_condition"
+                "755d3c9521429333"
             ],
             [
-                "switch_condition"
+                "755d3c9521429333"
             ],
             [
-                "switch_condition"
+                "755d3c9521429333"
             ],
             [
-                "junction_raw"
+                "1e571cd7d03bf56d"
             ]
         ]
     },
     {
-        "id": "link_in",
+        "id": "13ee05c476445526",
         "type": "link in",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "link in",
         "links": [
-            "link_out"
+            "843ba970b1e41779"
         ],
         "x": 475,
         "y": 280,
         "wires": [
             [
-                "gateway_node"
+                "592d8829822452ac"
             ]
         ]
     },
     {
-        "id": "debug_time_domain",
+        "id": "e1b3681f77ffd761",
         "type": "debug",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "Time Domain Data",
         "active": true,
         "tosidebar": true,
@@ -280,32 +264,22 @@
         "wires": []
     },
     {
-        "id": "link_out",
+        "id": "843ba970b1e41779",
         "type": "link out",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "link out",
         "mode": "link",
         "links": [
-            "link_in"
+            "13ee05c476445526"
         ],
         "x": 475,
         "y": 100,
         "wires": []
     },
     {
-        "id": "comment_gateway",
-        "type": "comment",
-        "z": "tab_regular_raw",
-        "name": "To Wireless Gateway node",
-        "info": "",
-        "x": 1790,
-        "y": 40,
-        "wires": []
-    },
-    {
-        "id": "debug_all",
+        "id": "d1f2e16aeb742fa2",
         "type": "debug",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "All Data",
         "active": false,
         "tosidebar": true,
@@ -320,9 +294,9 @@
         "wires": []
     },
     {
-        "id": "format_csv",
+        "id": "d543d624a90b9781",
         "type": "function",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "Format to CSV rows",
         "func": "var d = msg.payload;\nvar sd = d.sensor_data;\n\n// Full resolution timestamp split into date + time with milliseconds\nvar now = new Date();\nvar date = now.getFullYear() + '-' +\n           String(now.getMonth() + 1).padStart(2, '0') + '-' +\n           String(now.getDate()).padStart(2, '0');\nvar time_ms = String(now.getHours()).padStart(2, '0') + ':' +\n              String(now.getMinutes()).padStart(2, '0') + ':' +\n              String(now.getSeconds()).padStart(2, '0') + '.' +\n              String(now.getMilliseconds()).padStart(3, '0');\n\nvar headerWritten = flow.get('csvHeaderWritten') || false;\nvar rows = '';\n\nif (!headerWritten) {\n    rows = 'date,time_ms,addr,battery_percent,temperature_c,odr_hz,fft_confidence,sample_index,x_g,y_g,z_g\\n';\n    flow.set('csvHeaderWritten', true);\n}\n\nvar xData = sd.data.x;\nvar yData = sd.data.y;\nvar zData = sd.data.z;\nvar temp = (sd.device_temp !== undefined) ? sd.device_temp : (sd.temperature !== undefined ? sd.temperature : '');\nvar odr = sd.odr || '';\nvar fft = sd.fft_confidence || '';\n\nfor (var i = 0; i < xData.length; i++) {\n    rows += date + ',' +\n            time_ms + ',' +\n            d.addr + ',' +\n            d.battery_percent + ',' +\n            temp + ',' +\n            odr + ',' +\n            fft + ',' +\n            i + ',' +\n            xData[i] + ',' +\n            yData[i] + ',' +\n            zData[i] + '\\n';\n}\n\nmsg.payload = rows;\nmsg.filename = 'C:\\\\Users\\\\Ukesh Marshal\\\\Downloads\\\\vibration_data.csv';\nmsg.flags = { append: true };\nreturn msg;",
         "outputs": 1,
@@ -334,14 +308,14 @@
         "y": 380,
         "wires": [
             [
-                "write_csv"
+                "fd98b503aad8e90c"
             ]
         ]
     },
     {
-        "id": "write_csv",
+        "id": "fd98b503aad8e90c",
         "type": "file",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "Write to CSV",
         "filename": "C:\\Users\\Ukesh Marshal\\Downloads\\testa.csv",
         "filenameType": "str",
@@ -353,14 +327,14 @@
         "y": 320,
         "wires": [
             [
-                "debug_saved"
+                "ab048ccb112fc397"
             ]
         ]
     },
     {
-        "id": "debug_saved",
+        "id": "ab048ccb112fc397",
         "type": "debug",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "✅ CSV saved",
         "active": true,
         "tosidebar": true,
@@ -375,24 +349,29 @@
         "wires": []
     },
     {
-        "id": "debug_config",
+        "id": "a848f0ea372974ec",
         "type": "function",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "⚙️ Config Status",
         "func": "var topic = msg.topic || '';\nvar payload = msg.payload || {};\nvar mode = payload.mode || '';\n\n// ── Sensor mode messages ──────────────────────────────────\nif (topic === 'sensor_mode') {\n    if (mode === 'RUN') {\n        node.status({fill:'green', shape:'dot', text:'🟢 RUNNING — sensor awake & transmitting'});\n        node.warn('🟢 RUN: Sensor is awake and transmitting normally');\n    }\n    else if (mode === 'FLY') {\n        node.status({fill:'blue', shape:'ring', text:'🔵 FLY — checking for config updates...'});\n        node.warn('🔵 FLY: Sensor checking in — Node-RED has 2 seconds to push config');\n    }\n    else if (mode === 'PGM') {\n        node.status({fill:'yellow', shape:'ring', text:'🟡 CONFIG MODE — sensor ready to receive settings'});\n        node.warn('🟡 PGM: Sensor is in manual configuration mode');\n    }\n    else if (mode === 'ACK') {\n        node.status({fill:'blue', shape:'dot', text:'📨 ACK — parameter received by sensor'});\n        node.warn('📨 ACK: Sensor acknowledged a configuration command');\n    }\n    else if (mode === 'PUM') {\n        node.status({fill:'grey', shape:'ring', text:'🔄 FACTORY RESET — sensor reverted to defaults'});\n        node.warn('🔄 PUM: Sensor was factory reset. Configure and reset to resume.');\n    }\n    else if (mode === 'MOFF') {\n        node.status({fill:'grey', shape:'dot', text:'⚫ MOTOR OFF — machine not running'});\n        node.warn('⚫ MOFF: Sensor says machine is OFF (vibration below threshold)');\n    }\n    else if (mode === 'UPTHWRN') {\n        node.status({fill:'red', shape:'ring', text:'⚠️ THRESHOLD WARNING — triggering too often, battery drain risk'});\n        node.warn('⚠️ UPTHWRN: Smart threshold too low — sensor triggering constantly. Raise threshold to protect battery.');\n    }\n}\n\n// ── Config Results message ────────────────────────────────\nelse if (topic === 'Config Results') {\n    var p = payload;\n    var allOk = true;\n    var results = [];\n\n    // Check each key that ends in known param patterns\n    for (var key in p) {\n        if (key === 'addr' || key === 'time' || key === '_msgid') continue;\n        if (typeof p[key] === 'boolean') {\n            results.push((p[key] ? '✅' : '❌') + ' ' + key + ': ' + p[key]);\n            if (!p[key]) allOk = false;\n        }\n    }\n\n    if (allOk) {\n        node.status({fill:'green', shape:'dot', text:'✅ CONFIG COMPLETE — all settings written to sensor'});\n        node.warn('✅ CONFIG COMPLETE:\\n' + results.join('\\n'));\n    } else {\n        node.status({fill:'red', shape:'dot', text:'❌ CONFIG PARTIAL — some settings failed, check log'});\n        node.warn('❌ CONFIG PARTIAL — some parameters failed:\\n' + results.join('\\n'));\n    }\n}\n\n// ── OTN Request Results ───────────────────────────────────\nelse if (topic === 'OTN Request Results') {\n    node.status({fill:'blue', shape:'ring', text:'🔵 OTN — config window extended to 60 seconds'});\n    node.warn('🔵 OTN: Config window extended. Pushing parameters now...');\n}\n\n// ── Sensor data (running confirmation) ───────────────────\nelse if (topic === 'sensor_data') {\n    var sd = payload.sensor_data || {};\n    var modeNum = sd.mode;\n    var modeLabel = modeNum === 0 ? 'Processed' : modeNum === 1 ? 'Raw' : modeNum === 2 ? 'On Demand' : modeNum === 3 ? 'Smart' : 'Unknown';\n    node.status({fill:'green', shape:'dot', text:'📡 DATA: mode=' + modeLabel + ' | ODR=' + (sd.odr||'?') + ' | fft=' + (sd.fft_confidence||'?')});\n}\n\nreturn msg;",
         "outputs": 1,
+        "timeout": "",
         "noerr": 0,
         "initialize": "",
         "finalize": "",
         "libs": [],
         "x": 530,
         "y": 340,
-        "wires": [["debug_config_raw"]]
+        "wires": [
+            [
+                "6477cdc59e76f51a"
+            ]
+        ]
     },
     {
-        "id": "debug_config_raw",
+        "id": "6477cdc59e76f51a",
         "type": "debug",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "Config Log",
         "active": true,
         "tosidebar": true,
@@ -407,23 +386,13 @@
         "wires": []
     },
     {
-        "id": "comment_instructions",
-        "type": "comment",
-        "z": "tab_regular_raw",
-        "name": "📋 SETUP",
-        "info": "## Steps\n1. Double-click Wireless Gateway → set your COM port\n2. Double-click Sensor Config node:\n   - Tick Sampling Interval → set to 5 (minutes)\n   - Tick Auto Config + OTF Config\n   - Click Done → Deploy\n3. Reset sensor → wait for 'Config Complete' in Config Status debug\n4. Every 5 mins: sensor transmits processed → flow requests raw → saves to CSV\n\n## CSV location\nC:\\Users\\Ukesh Marshal\\Downloads\\vibration_data.csv\n\n## CSV columns\ntimestamp, addr, battery_percent, temperature_c, odr_hz, fft_confidence, sample_index, x_g, y_g, z_g",
-        "x": 230,
-        "y": 120,
-        "wires": []
-    },
-    {
-        "id": "fb6a2b292e3c459b",
+        "id": "537f632755853b18",
         "type": "ncd-wireless-node",
-        "z": "tab_regular_raw",
+        "z": "fb2d99fb28f6bd92",
         "name": "Sensor",
-        "connection": "1183e84ed8807233",
-        "config_comm": "1183e84ed8807233",
-        "addr": "",
+        "connection": "bd2072265d713085",
+        "config_comm": "bd2072265d713085",
+        "addr": "00:13:a2:00:42:30:75:68",
         "sensor_type": "110",
         "auto_config": true,
         "on_the_fly_enable": true,
@@ -602,7 +571,7 @@
         "shift_four_hours_108": 0,
         "counter_threshold_35": 50,
         "counter_threshold_35_active": "",
-        "payload_length_80_active": "",
+        "payload_length_80_active": true,
         "payload_length_80": 3,
         "motion_threshold_46_active": "",
         "motion_threshold_46": 100,
@@ -780,7 +749,7 @@
         "enable_rpm_calculate_status_110_active": "",
         "enable_rpm_calculate_status_110": 0,
         "odr_p1_110_active": true,
-        "odr_p1_110": "13",
+        "odr_p1_110": "14",
         "odr_p2_110_active": "",
         "odr_p2_110": 0,
         "sampling_duration_p1_110_active": true,
@@ -803,7 +772,7 @@
         "motion_detect_threshold_p2_110": 0,
         "quality_of_service_108_active": "",
         "quality_of_service_108": 0,
-        "max_raw_sample_110_active": false,
+        "max_raw_sample_110_active": true,
         "max_raw_sample_110": "8100",
         "always_on_120": 0,
         "sensor_reset_120": 0,
@@ -993,12 +962,29 @@
         "y": 340,
         "wires": [
             [
-                "debug_config"
+                "a848f0ea372974ec"
             ]
         ]
     },
     {
-        "id": "1183e84ed8807233",
+        "id": "592d8829822452ac",
+        "type": "ncd-gateway-node",
+        "z": "fb2d99fb28f6bd92",
+        "name": "Wireless Gateway (set COM port)",
+        "connection": "bd2072265d713085",
+        "unknown_devices": 0,
+        "outputs": 1,
+        "x": 400,
+        "y": 200,
+        "wires": [
+            [
+                "58bc4be060ac636f",
+                "d1f2e16aeb742fa2"
+            ]
+        ]
+    },
+    {
+        "id": "bd2072265d713085",
         "type": "ncd-gateway-config",
         "name": "MODEM",
         "comm_type": "serial",
@@ -1012,7 +998,7 @@
         "rssi": false
     },
     {
-        "id": "f4690d1eacbb5891",
+        "id": "b9613d4faf0e214a",
         "type": "global-config",
         "env": [],
         "modules": {

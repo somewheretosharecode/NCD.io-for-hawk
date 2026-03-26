@@ -1,5 +1,5 @@
 #!/bin/bash
-# =============================================================================
+# run this on the terminal curl -sL https://raw.githubusercontent.com/somewheretosharecode/NCD.io-for-hawk/main/ncd_setup.sh -o ~/ncd_setup.sh && bash ~/ncd_setup.sh
 # NCD.io CM5 Setup Script — Work In Progress
 # Run Step 1 while booted from USB
 # Run Step 2 onwards while booted from eMMC

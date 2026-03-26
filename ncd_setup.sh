@@ -1,3 +1,8 @@
+#1st run this line                  curl -sL https://raw.githubusercontent.com/somewheretosharecode/NCD.io-for-hawk/main/ncd_setup.sh -o ~/ncd_setup.sh
+#2nd run this line                 bash ~/ncd_setup.sh
+
+
+
 #!/bin/bash
 # =============================================================================
 # NCD.io Wireless Sensor — Raspberry Pi CM5 Full Setup Script

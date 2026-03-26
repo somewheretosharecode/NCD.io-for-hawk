@@ -1,5 +1,5 @@
-#1st run this line                  curl -sL https://raw.githubusercontent.com/somewheretosharecode/NCD.io-for-hawk/main/ncd_setup.sh -o ~/ncd_setup.sh
-#2nd run this line                 bash ~/ncd_setup.sh
+# 1st run this line                  curl -sL https://raw.githubusercontent.com/somewheretosharecode/NCD.io-for-hawk/main/ncd_setup.sh -o ~/ncd_setup.sh
+# 2nd run this line                 bash ~/ncd_setup.sh
 
 
 

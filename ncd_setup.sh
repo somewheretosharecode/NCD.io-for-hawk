@@ -1,9 +1,8 @@
 #!/bin/bash
 # =============================================================================
 # NCD.io Full Setup Script — One Run Does Everything
-# curl -sL https://raw.githubusercontent.com/somewheretosharecode/NCD.io-for-hawk/main/ncd_setup.sh -o ~/ncd_setup.sh && bash ~/ncd_setup.sh
-# =============================================================================
-
+# run this part to setup the pi ###### curl -sL https://raw.githubusercontent.com/somewheretosharecode/NCD.io-for-hawk/main/ncd_setup.sh -o ~/ncd_setup.sh && bash ~/ncd_setup.sh
+# run this line to run node red cd ###### cd ~/.node-red && node_modules/.bin/node-red &
 printf '\e[?2004l' 2>/dev/null || true
 
 PHASE_FILE="/home/$USER/.ncd_setup_phase"
